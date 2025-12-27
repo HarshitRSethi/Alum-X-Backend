@@ -38,9 +38,10 @@ public class UserServiceImpl implements UserService {
         }
 
         // 3️⃣ Optional: validate email format, password length etc.
-        if (!request.getEmail().matches("^[\\w-.]+@[\\w-]+\\.[a-z]{2,}$")) {
+        if (!request.getEmail().matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}(\\.[A-Za-z]{2,})?$")) {
             throw new BadRequestException("Invalid email format: " + request.getEmail());
         }
+
 
         if (request.getPassword().length() < 6) {
             throw new BadRequestException("Password must be at least 6 characters");
